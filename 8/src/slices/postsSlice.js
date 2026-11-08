@@ -17,7 +17,14 @@ const postsSlice = createSlice({
       postsAdapter.removeOne(state, payload.id),
   },
   // BEGIN (write your solution here)
-
+  extraReducers: (builder) => {
+  builder.addCase(usersActions.removeUser, (state, { payload: userId }) => {
+    const idsToRemove = state.ids.filter(
+      (id) => state.entities[id].author === userId
+    )
+    postsAdapter.removeMany(state, idsToRemove)
+  })
+}
   // END
 });
 
