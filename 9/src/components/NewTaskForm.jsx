@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 // BEGIN (write your solution here)
-
+import {addTask} from "../slices/tasksSlice.js"
 // END
 
 const NewTaskForm = () => {
@@ -11,7 +11,11 @@ const NewTaskForm = () => {
 
   const handleAddTask = (e) => {
     // BEGIN (write your solution here)
-
+    e.preventDefault()
+    const trimmed = name.trim()
+    if (!trimmed) return
+    dispatch(addTask({name: trimmed}))
+    setName("")
     // END
   };
 
